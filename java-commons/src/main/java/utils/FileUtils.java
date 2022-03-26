@@ -5,6 +5,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtils {
@@ -26,6 +27,40 @@ public class FileUtils {
             }
         }
     }
+
+    /**
+     * Helper function that lists and stores all files in a directory and subdirectories
+     * @param directory, the directory to list files from
+     * @return a list of all files
+     */
+    public static List<File> listFiles(File directory) {
+        List<File> files = new ArrayList<>();
+        listFiles(directory, files);
+        return files;
+    }
+
+    /**
+     * Deletes a folder and all of its contents recursively
+     */
+    public static boolean deleteFolder(File folder) {
+        boolean result;
+        File[] files = folder.listFiles();
+        if (files != null) { //some JVMs return null for empty dirs
+            for(File f: files) {
+                if (f.isDirectory()) {
+                    deleteFolder(f);
+                } else {
+                    result = f.delete();
+                    if (!result) {
+                        return false;
+                    }
+                }
+            }
+        }
+        result = folder.delete();
+        return result;
+    }
+
 
     /**
      * Opens a file
@@ -66,7 +101,13 @@ public class FileUtils {
      * @return a file array of the selected file(s)
      */
     @SuppressWarnings("all") // for the always true/false assertion
-    public static File[] launchJFileChooser(String title, String approveButtonText, int selectionMode, boolean multipleSelection, File openAt, FileNameExtensionFilter fileNameExtensionFilter) {
+    public static File[] launchJFileChooser(
+            String title,
+            String approveButtonText,
+            int selectionMode,
+            boolean multipleSelection,
+            File openAt,
+            FileNameExtensionFilter fileNameExtensionFilter) {
 
         // create it
         JFileChooser jfc = new JFileChooser();
