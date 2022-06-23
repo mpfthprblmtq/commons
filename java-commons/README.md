@@ -101,7 +101,7 @@ A utility class that handles the parsing of dates from strings and vice versa.  
 **Example Usage:**
 
 ```java
-import utils.DateUtils;
+import com.mpfthprblmtq.commons.utils.DateUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -121,7 +121,7 @@ public class Main {
         String detailedDateString = DateUtils.formatDetailedDateTime(detailDateFromString);
         // get a custom formatted String from a Date object
         String customDateString = DateUtils.formatCustomDateTime(customDateFromString, new SimpleDateFormat("MM dd yyyy"));
-        
+
         // check if a date is the same as today
         boolean isSame = DateUtils.isDateSameAsToday(new Date());           // will return true since new Date() returns the current day
         boolean isSame = DateUtils.isDateSameAsToday(simpleDateFromString); // will return false since the date being handed to the method is 03/23/1994
@@ -139,13 +139,13 @@ A utility class that has some file based methods like listing all files in a dir
 **Example Usage:**
 
 ```java
-import utils.FileUtils;
+import com.mpfthprblmtq.commons.utils.FileUtils;
 
 public class Main {
     public static void main(String[] args) {
         // gets all the files in a directory
         List<File> filesInDirectory = FileUtils.listFiles(new File("path/to/directory"));
-        
+
         FileUtils.openFile(file);   // will open file with whatever default application is configured for your system
         FileUtils.showInFolder(file);   // will open Finder/File Explorer in the directory the file is in
     }
@@ -163,7 +163,7 @@ A utility class that has some basic null-safe String interpolation functions, li
 **Example Usage:**
 
 ```java
-import utils.StringUtils;
+import com.mpfthprblmtq.commons.utils.StringUtils;
 
 public class Main {
     public static void main(String[] args) {
@@ -185,7 +185,7 @@ A utility class for opening web pages.  (That's currently all it has)
 **Example Usage:**
 
 ```java
-import utils.WebUtils;
+import com.mpfthprblmtq.commons.utils.WebUtils;
 
 public class Main {
     public static void main(String[] args) {
@@ -207,14 +207,14 @@ A jackson utility for an ObjectMapper, with a builder pattern.  (Really just eli
 **Example Usage:**
 
 ```java
-import wrappers.JsonWrapper;
+import com.mpfthprblmtq.commons.wrappers.JsonWrapper;
 
 public class Main {
     public static void main(String[] args) {
         // default wrapper with setter method
         JsonWrapper wrapper = new JsonWrapper();
         wrapper.setProperty(JsonWrapper.ALLOW_COMMENTS, true);
-        
+
         // wrapper with builder pattern
         JsonWrapper builderWrapper = new JsonWrapper()
                 .withProperty(JsonWrapper.ALLOW_COMMENTS, true)

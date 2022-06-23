@@ -1,11 +1,11 @@
-package logger;
+package com.mpfthprblmtq.commons.logger;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import testingUtils.TestingUtils;
-import utils.FileUtils;
-import utils.StringUtils;
+import com.mpfthprblmtq.commons.utils.FileUtils;
+import com.mpfthprblmtq.commons.utils.StringUtils;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -56,7 +56,7 @@ class LoggerTest {
         logger.logError(logString, e);
 
         // assert that the context, log message, and exception was logged, I'm not too worried about the date and time being right
-        assertTrue(errContent.toString().contains("logger.LoggerTest.testLogErrorWithException:"));
+        assertTrue(errContent.toString().contains("com.mpfthprblmtq.commons.logger.LoggerTest.testLogErrorWithException:"));
         assertTrue(errContent.toString().contains(logString));
         assertTrue(errContent.toString().contains("Exception details:  java.lang.Exception"));
         assertTrue(errContent.toString().contains(exceptionString));
@@ -84,7 +84,7 @@ class LoggerTest {
         List<String> lines = TestingUtils.readFileContents(filePath);
         assert lines != null;
         assertEquals(1, lines.size());
-        assertTrue(lines.get(0).contains("logger.LoggerTest.testLogError_logsToFile:"));  // context
+        assertTrue(lines.get(0).contains("com.mpfthprblmtq.commons.logger.LoggerTest.testLogError_logsToFile:"));  // context
         assertTrue(lines.get(0).endsWith(logString));       // message
 
         // cleanup
@@ -105,7 +105,7 @@ class LoggerTest {
         List<String> lines = TestingUtils.readFileContents(filePath);
         assert lines != null;
         assertEquals(2, lines.size());
-        assertTrue(lines.get(0).contains("logger.LoggerTest.testLogErrorWithException_logsToFile:"));
+        assertTrue(lines.get(0).contains("com.mpfthprblmtq.commons.logger.LoggerTest.testLogErrorWithException_logsToFile:"));
         assertTrue(lines.get(0).contains(logString));
         assertTrue(lines.get(1).contains("Exception details:  java.lang.Exception"));
         assertTrue(lines.get(1).contains(exceptionString));

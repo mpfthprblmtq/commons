@@ -7,7 +7,7 @@
  */
 
 // package
-package utils;
+package com.mpfthprblmtq.commons.utils;
 
 // imports
 import javax.swing.*;
@@ -48,6 +48,21 @@ public class FileUtils {
         List<File> files = new ArrayList<>();
         listFiles(directory, files);
         return files;
+    }
+
+    /**
+     * Renames the file and logs the result
+     * @param from, the file to change
+     * @param to, the file to change from to
+     * @return the result of the change
+     * @throws Exception if renaming is unsuccessful
+     */
+    public static boolean rename(File from, File to) throws Exception {
+        if (from.renameTo(to)) {
+            return true;
+        } else {
+            throw new Exception("Couldn't rename " + from.getName() + " to " + to.getName() + "!");
+        }
     }
 
     /**

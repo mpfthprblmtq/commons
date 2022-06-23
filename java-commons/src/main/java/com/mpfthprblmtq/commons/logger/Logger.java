@@ -7,12 +7,12 @@
  */
 
 // package
-package logger;
+package com.mpfthprblmtq.commons.logger;
 
 // imports
 import lombok.Data;
-import utils.DateUtils;
-import utils.StringUtils;
+import com.mpfthprblmtq.commons.utils.DateUtils;
+import com.mpfthprblmtq.commons.utils.StringUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

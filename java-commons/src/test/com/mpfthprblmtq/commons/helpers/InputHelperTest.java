@@ -1,4 +1,4 @@
-package helpers;
+package com.mpfthprblmtq.commons.helpers;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

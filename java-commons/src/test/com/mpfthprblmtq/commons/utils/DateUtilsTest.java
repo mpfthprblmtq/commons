@@ -1,4 +1,4 @@
-package utils;
+package com.mpfthprblmtq.commons.utils;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

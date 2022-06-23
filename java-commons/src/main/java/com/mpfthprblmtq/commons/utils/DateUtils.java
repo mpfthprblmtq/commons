@@ -7,7 +7,7 @@
  */
 
 // package
-package utils;
+package com.mpfthprblmtq.commons.utils;
 
 // imports
 import java.text.ParseException;

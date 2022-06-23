@@ -7,7 +7,7 @@
  */
 
 // package
-package wrappers;
+package com.mpfthprblmtq.commons.wrappers;
 
 // imports
 import com.fasterxml.jackson.core.JsonParser;

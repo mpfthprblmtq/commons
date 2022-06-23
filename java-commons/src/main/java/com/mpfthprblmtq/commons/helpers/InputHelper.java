@@ -7,7 +7,7 @@
  */
 
 // package
-package helpers;
+package com.mpfthprblmtq.commons.helpers;
 
 // imports
 import lombok.Data;

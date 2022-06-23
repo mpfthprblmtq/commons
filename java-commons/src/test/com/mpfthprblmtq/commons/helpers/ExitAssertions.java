@@ -1,4 +1,4 @@
-package helpers;
+package com.mpfthprblmtq.commons.helpers;
 
 import java.security.Permission;
 
