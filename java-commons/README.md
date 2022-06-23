@@ -1,7 +1,16 @@
 # Java Commons
 
-A library I made to clean up some projects of mine.  
-**Note:** I have not tried using this library on Windows, only on OSX.  Might implement that in a future release.
+![Generic badge](https://img.shields.io/badge/version-0.0.1-brightgreen.svg)
+![Language badge](https://img.shields.io/badge/Java-8-blue)
+![Platform badge](https://img.shields.io/badge/Platform-OSX-lightgrey)
+
+A library I made to clean up some projects of mine.  Built with Java 8.
+
+**Note:** I have not tried using this library on Windows, only on OSX.  Might implement that in a future release, or just make sure that it works with both Windows and OSX.
+
+[View the JavaDoc](https://www.prblmtq.com/portfolio/app/java-commons/javadoc/)
+
+[Github Project (feature/bug tracking)](https://github.com/users/mpfthprblmtq/projects/1)
 
 ---
 
@@ -12,6 +21,7 @@ Here's what's under the hood:
 ### Helpers
 <details>
   <summary markdown="span">Input Helper</summary>
+
 
 A command line-based helper that takes user input and validates it based on a regex parameter.
 
@@ -43,6 +53,7 @@ public class Main {
 ### Loggers
 <details>
   <summary markdown="span">Logger</summary>
+
 
 A configurable logger that logs things to the console or to a file.  
 
@@ -84,6 +95,7 @@ The code above will result in log messages that look like this:
 <details>
   <summary markdown="span">DateUtils</summary>
 
+
 A utility class that handles the parsing of dates from strings and vice versa.  Currently, the only date formats I have in there are a simple date (MM-dd-yyyy) and a more complicated datetime (MM/dd/yyyy HH:mm:ss) mainly for logging.  But you can pass it your own SimpleDateFormat object and let the utility parse things for you.
 
 **Example Usage:**
@@ -121,6 +133,7 @@ public class Main {
 <details>
   <summary markdown="span">FileUtils</summary>
 
+
 A utility class that has some file based methods like listing all files in a directory, cleaning filenames, deleting folders, opening files, a "Show in Folder" function, a utility function to find the starting point in a group of files, and a fully customizable Swing JFileChooser.
 
 **Example Usage:**
@@ -144,6 +157,7 @@ public class Main {
 <details>
   <summary markdown="span">StringUtils</summary>
 
+
 A utility class that has some basic null-safe String interpolation functions, like isEmpty, isNotEmpty, some number formatting methods, and a function to check if all elements in an array/list are the same.
 
 **Example Usage:**
@@ -165,6 +179,7 @@ public class Main {
 <details>
   <summary markdown="span">WebUtils</summary>
 
+
 A utility class for opening web pages.  (That's currently all it has)
 
 **Example Usage:**
@@ -185,6 +200,7 @@ public class Main {
 
 <details>
   <summary markdown="span">JsonWrapper</summary>
+
 
 A jackson utility for an ObjectMapper, with a builder pattern.  (Really just eliminates the Jackson import)
 
@@ -221,37 +237,37 @@ public class Main {
 
 2. Opening the `java-commons` project in IntelliJ:
    1. Select *New -> Project from Existing Sources*.  Go to the repository you just cloned and select the `java-commons` folder.
-   2. On the Import Project dialog, leave “Create project from existing sources” selected and hit Next.
-   3. Leave the project name as “java-commons” and all the other settings the same and hit Next.
-   4. Leave the `src/main/java` and the `src/test` folders selected for the Source files and hit Next.
-   5. Leave the detected libraries selected (should be Jackson and Lombok for now) and hit Next.
-   6. Leave the module structure checkboxes checked and hit Next.
-   7. Select Java 1.8 and hit Next.
-   8. Hit Finish.  
+   2. On the Import Project dialog, leave “Create project from existing sources” selected and hit **Next**.
+   3. Leave the project name as “java-commons” and all the other settings the same and hit **Next**.
+   4. Leave the `src/main/java` and the `src/test` folders selected for the Source files and hit **Next**.
+   5. Leave the detected libraries selected (should be Jackson and Lombok for now) and hit **Next**.
+   6. Leave the module structure checkboxes checked and hit **Next**.
+   7. Select Java 1.8 and hit **Next**.
+   8. Hit **Finish**.  
 
 
 3. Creating the build process:
-   1. Go to *File -> Project Structure* or hit ⌘; for OSX.
-   2. Under Project Settings, select **Artifacts**.
+   1. Go to *File -> Project Structure* (or use the shortcut ⌘ ; for OSX).
+   2. Under *Project Settings*, select **Artifacts**.
    3. Select the + icon.
-   4. Hover over **JAR** then select *From modules with dependencies...*
-   5. On the **Create JAR from Modules** dialog, leave everything the way it is and hit OK.
-   6. Hit OK on the **Project Structure** dialog.
+   4. Hover over **JAR** then select **From modules with dependencies...**
+   5. On the *Create JAR from Modules* dialog, leave everything the way it is and hit **OK**.
+   6. Hit **OK** on the *Project Structure* dialog.
 
 
 4. Building the library into a JAR file:
    1. Go to *Build -> Build Artifacts...*
-   2. On the *Build Artifact* menu that opens up, you should only have one artifact to build, select *Build* from the Actions list.
+   2. On the *Build Artifact* menu that opens up, you should only have one artifact to build, select **Build** from the Actions list.
    3. The built library jar file should now be in the `out/artifacts/java_commons_jar` directory.
 
 
 5. Building the JavaDocs:
    1. Go to *Tools -> Generate JavaDoc...*
-   2. Select *Whole project* under Generate JavaDoc Scope.
+   2. Select **Whole project** under Generate JavaDoc Scope.
    3. (Optional) Uncheck *Include test sources* under Generate JavaDoc Scope.
-   4. Se the **Output directory** to something like `out/javadoc` (used in a future step).
+   4. Set the *Output directory* to something like `out/javadoc` (used in a future step).
    5. (Optional) Set a Locale (I used `en_US`, not sure what format it's expecting here).
-   6. Hit OK.
+   6. Hit **OK**.
    7. Open a terminal, navigate to that directory the javadocs were created in and run the following commands:
    ```shell
    cd out/javadoc
