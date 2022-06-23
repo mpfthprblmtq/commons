@@ -3,15 +3,12 @@ package helpers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class InputHelperTest {
 
@@ -25,7 +22,17 @@ public class InputHelperTest {
     }
 
     @Test
-    public void testGetInputWithYesNo() {
+    public void testNoArgsConstructor() {
+        inputHelper = new InputHelper();
+        // can only assert that inputHelper.getInputStream is of type BufferedReader
+        assertNotNull(inputHelper.getInputStream());
+        assertSame(inputHelper.getInputStream().getClass(), BufferedReader.class);
+        assertEquals(System.out, inputHelper.getOutputStream());
+        assertEquals(System.err, inputHelper.getErrorStream());
+    }
+
+    @Test
+    public void testGetInputWithYesNo() throws IOException {
         // create an input stream with just "y" or "n"
         ByteArrayInputStream inputStreamYes = new ByteArrayInputStream("y".getBytes(StandardCharsets.UTF_8));
         ByteArrayInputStream inputStreamNo = new ByteArrayInputStream("n".getBytes(StandardCharsets.UTF_8));
@@ -40,7 +47,7 @@ public class InputHelperTest {
     }
 
     @Test
-    public void testGetInputWithCustomTextRegex() {
+    public void testGetInputWithCustomTextRegex() throws IOException {
         // create input streams with custom user input
         ByteArrayInputStream inputStreamUppercaseText = new ByteArrayInputStream("CHEESE".getBytes(StandardCharsets.UTF_8));
         ByteArrayInputStream inputStreamLowercaseText = new ByteArrayInputStream("cheese".getBytes(StandardCharsets.UTF_8));
@@ -55,7 +62,7 @@ public class InputHelperTest {
     }
 
     @Test
-    public void testGetInputWithInvalidString() {
+    public void testGetInputWithInvalidString() throws IOException {
         // create input streams with custom user input, first two are invalid
         ByteArrayInputStream inputStreamUppercaseText = new ByteArrayInputStream("CHEESE\nCheese\ncheese".getBytes(StandardCharsets.UTF_8));
         inputHelper.setInputStream(inputStreamUppercaseText);
@@ -83,7 +90,7 @@ public class InputHelperTest {
     }
 
     @Test
-    public void testGetInputWithExit() {
+    public void testGetInputWithExit() throws IOException {
         // create input streams with exit user input
         ByteArrayInputStream inputStreamExit = new ByteArrayInputStream("EXIT".getBytes(StandardCharsets.UTF_8));
         inputHelper.setInputStream(inputStreamExit);

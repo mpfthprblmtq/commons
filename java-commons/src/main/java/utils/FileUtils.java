@@ -1,5 +1,15 @@
+/*
+ * Project: java-commons
+ * File:    FileUtils.java
+ * Desc:    Utility class with methods to help with file processing
+ *
+ * Copyright © Pat Ripley / PRBLMTQ 2022
+ */
+
+// package
 package utils;
 
+// imports
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.Desktop;
@@ -8,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+// class FileUtils
 public class FileUtils {
 
     /**
@@ -40,7 +51,18 @@ public class FileUtils {
     }
 
     /**
+     * Cleans a string if it's a file on OSX systems
+     * @param s, the string to clean (replace : with /)
+     * @return a cleaned string
+     */
+    public static String cleanFilenameForOSX(String s) {
+        return s.replaceAll(":", "/");
+    }
+
+    /**
      * Deletes a folder and all of its contents recursively
+     * @param folder the folder to delete
+     * @return a boolean result of the delete
      */
     public static boolean deleteFolder(File folder) {
         boolean result;
@@ -67,10 +89,14 @@ public class FileUtils {
      * @param file, the file to open
      * @throws IOException if there are issues opening the file
      */
-    public static void openFile(File file) throws IOException {
-        Desktop desktop = Desktop.getDesktop();
-        if (file.exists()) {
-            desktop.open(file);
+    public static void openFile(File file) throws IOException, Exception {
+        if (Desktop.isDesktopSupported()) {
+            Desktop desktop = Desktop.getDesktop();
+            if (file.exists()) {
+                desktop.open(file);
+            }
+        } else {
+            throw new Exception("Desktop is not supported!  Tried opening: " + file.getPath());
         }
     }
 
@@ -142,6 +168,7 @@ public class FileUtils {
     /**
      * Gets the common base starting point for a list of files
      * @param files, the list of files to search
+     * @return a File starting point
      */
     public static File getStartingPoint(List<File> files) {
         String commonPath = "";
@@ -166,7 +193,7 @@ public class FileUtils {
             if (allMatched) {
                 commonPath += thisFolder + "/"; // add it to the answer
             } else {
-                //stop looking
+                // stop looking
                 break;
             }
         }

@@ -1,7 +1,6 @@
 package utils;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FileUtilsTest {
 
@@ -45,8 +46,8 @@ public class FileUtilsTest {
     @AfterAll
     @SuppressWarnings("all") // for ignoring the result of the file stuff
     static void tearDown() {
-        FileUtils.deleteFolder(testFolder);
-        Assertions.assertFalse(testFolder.exists());
+        assertTrue(FileUtils.deleteFolder(testFolder));
+        assertFalse(testFolder.exists());
     }
 
     @Test
@@ -54,16 +55,26 @@ public class FileUtilsTest {
         List<File> files = new ArrayList<>();
         FileUtils.listFiles(testFolder, files);
 
-        Assertions.assertTrue(files.containsAll(testFiles));
-        Assertions.assertTrue(testFiles.containsAll(files));
+        assertTrue(files.containsAll(testFiles));
+        assertTrue(testFiles.containsAll(files));
     }
 
     @Test
     public void testListFilesWithNoListOverload() {
         List<File> files = FileUtils.listFiles(testFolder);
 
-        Assertions.assertTrue(files.containsAll(testFiles));
-        Assertions.assertTrue(testFiles.containsAll(files));
+        assertTrue(files.containsAll(testFiles));
+        assertTrue(testFiles.containsAll(files));
+    }
+
+    @Test
+    public void testCleanFileNameForOSX() {
+        String filename = "01 test:test.mp3";
+        String expected = "01 test/test.mp3";
+        String actual = FileUtils.cleanFilenameForOSX(filename);
+
+        assertEquals(expected, actual);
+        assertFalse(actual.contains(":"));
     }
 
     @Test
@@ -79,7 +90,7 @@ public class FileUtilsTest {
                 new File("test1/test2/library/directory3")));
 
         String expected = "test1/test2/library";
-        Assertions.assertEquals(expected, FileUtils.getStartingPoint(files).getPath());
+        assertEquals(expected, FileUtils.getStartingPoint(files).getPath());
     }
 
     @Test

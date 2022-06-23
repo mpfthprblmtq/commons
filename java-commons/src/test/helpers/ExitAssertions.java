@@ -4,8 +4,8 @@ import java.security.Permission;
 
 import static java.lang.System.getSecurityManager;
 import static java.lang.System.setSecurityManager;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public enum ExitAssertions {
     ; // why is this here?  why are we still here?  just to suffer?

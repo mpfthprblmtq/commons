@@ -1,10 +1,22 @@
+/*
+ * Project: java-commons
+ * File:    JsonWrapper.java
+ * Desc:    Wrapper class used to create ObjectMappers and allows you to configure them
+ *
+ * Copyright © Pat Ripley / PRBLMTQ 2022
+ */
+
+// package
 package wrappers;
 
+// imports
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+// class JsonWrapper
 public class JsonWrapper {
 
+    // constant fields used for setting attributes in ObjectMappers
     public static final int AUTO_CLOSE_SOURCE = 1;
     public static final int ALLOW_COMMENTS = 2;
     public static final int ALLOW_YAML_COMMENTS = 3;
@@ -19,6 +31,8 @@ public class JsonWrapper {
     public static final int STRICT_DUPLICATE_DETECTION = 12;
     public static final int IGNORE_UNDEFINED = 13;
     public static final int INCLUDE_SOURCE_IN_LOCATION = 14;
+
+    // main mapper object
     final ObjectMapper mapper;
 
     public JsonWrapper() {
