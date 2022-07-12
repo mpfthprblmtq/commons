@@ -91,6 +91,57 @@ The code above will result in log messages that look like this:
 
 </details>
 
+### Objects
+<details>
+  <summary markdown="span">RequestProperties</summary>
+
+
+A builder class to create RequestProperties for use in an API call.
+
+**Example Usage:**
+
+```java
+public class Main {
+    public static void main(String[] args) {
+       // set up the request
+       RequestProperties requestProperties = new RequestProperties()
+               .withProperty("Accept", "application/json")
+               .withProperty("Content-Type", "application/json")
+               .withProperty("Authorization", "Bearer " + token.getToken())
+               .build();
+
+       // make the request
+       String response = WebUtils.get(url, requestProperties.getProperties());
+    }
+}
+```
+</details> 
+
+
+<details>
+  <summary markdown="span">RequestURL</summary>
+
+
+A builder class to create a URL object for use in an API call.
+
+**Example Usage:**
+
+```java
+import java.net.URL;
+
+public class Main {
+   public static void main(String[] args) {
+      // create the url
+      URL url = new RequestURL()
+              .withBaseUrl(Constants.BASE_URL)
+              .withUrlParam("id", id)
+              .withQueryParam("limit", String.valueOf(Constants.LIMIT))
+              .buildUrl();
+   }
+}
+```
+</details> 
+
 ### Utilities
 <details>
   <summary markdown="span">DateUtils</summary>
