@@ -1,6 +1,6 @@
 # Java Commons
 
-![Generic badge](https://img.shields.io/badge/version-0.0.1-brightgreen.svg)
+![Generic badge](https://img.shields.io/badge/version-0.0.2-brightgreen.svg)
 ![Language badge](https://img.shields.io/badge/Java-8-blue)
 ![Platform badge](https://img.shields.io/badge/Platform-OSX-lightgrey)
 
@@ -144,6 +144,34 @@ public class Main {
 
 ### Utilities
 <details>
+  <summary markdown="span">CollectionUtils</summary>
+
+
+A utility class that handles simple collection functions.
+
+**Example Usage:**
+
+```java
+import com.mpfthprblmtq.commons.utils.CollectionUtils;
+
+public class Main {
+   public static void main(String[] args) {
+
+      List<String> stringList = getStringList();
+      if (CollectionUtils.isEmpty(stringList)) {
+         // handle an empty (or null) list
+         log.debug("stringList is empty!");
+      }
+
+      // create a list from given values
+      List<String> createdStringList = CollectionUtils.createList("1", "deux", "three");
+      assertEquals(3, createdStringList.size());
+   }
+}
+```
+</details>  
+
+<details>
   <summary markdown="span">DateUtils</summary>
 
 
@@ -204,6 +232,47 @@ public class Main {
 ```
 
 </details>
+
+<details>
+  <summary markdown="span">RegexUtils</summary>
+
+
+A utility class that handles searching and finding regex matches in given strings.
+
+**Example Usage:**
+
+```java
+import com.mpfthprblmtq.commons.utils.RegexUtils;
+
+import java.util.Arrays;
+
+public class Main {
+   public static void main(String[] args) {
+
+      String toCheck = "2022 asdf 7890 what 38";
+
+      // get one match
+      String match = RegexUtils.getMatchedGroup(toCheck, "(?<word>[A-Za-z]+)", "word");
+      assertEquals("what", match);
+
+      // get all matches
+      List<String> matches = RegexUtils.getAllMatchesForGroup(toCheck, "(?<word>[A-Za-z]+)", "word");
+      assertEquals(Arrays.asList("asdf", "what"), matches);
+      
+      // get all matches for each group
+      Map<String, String> matches = RegexUtils.getAllMatchesForGroups(
+              toCheck, "((?<year>\\d{4})|(?<word>[A-Za-z]+))", Arrays.asList("year", "word"));
+      assertEquals(2, matches.size());
+      assertEquals(2, matches.get("year").size());
+      assertEquals(2, matches.get("word").size());
+      assertEquals("2022", matches.get("year").get(0));
+      assertEquals("7890", matches.get("year").get(1));
+      assertEquals("asdf", matches.get("word").get(0));
+      assertEquals("what", matches.get("word").get(1));
+   }
+}
+```
+</details>  
 
 <details>
   <summary markdown="span">StringUtils</summary>

@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 public class RegexUtils {
 
     /**
-     * Gets a single matched group from a string
+     * Gets a single matched group from a string.  If there are multiple matches, will return the last match.
      * @param s the string to check
      * @param regex the regex to check with
      * @param group the name of the matched group
@@ -31,26 +31,6 @@ public class RegexUtils {
             return matcher.group(group);
         }
         return null;
-    }
-
-    /**
-     * Gets potentially multiple matches for a regex with multiple groups
-     * @param s the string to check
-     * @param regex the regex to check with
-     * @param groups the list of names of groups to match
-     * @return the matches map, keys will be the groups, and the values will be the matches for that specific group
-     */
-    public static Map<String, String> getMatchingGroups(String s, String regex, List<String> groups) {
-        Map<String, String> matchingGroups = new HashMap<>();
-        groups.forEach(key -> matchingGroups.put(key, StringUtils.EMPTY));
-        for (String group : groups) {
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(s);
-            if (matcher.find()) {
-                matchingGroups.put(group, matcher.group(group));
-            }
-        }
-        return matchingGroups;
     }
 
     /**
@@ -86,7 +66,7 @@ public class RegexUtils {
      * @param groups the list of names of groups to match
      * @return the matches map, keys will be the groups, values will be the list of matches for that specific group
      */
-    public static Map<String, List<String>> getAllMatchingGroups(String s, String regex, List<String> groups) {
+    public static Map<String, List<String>> getAllMatchesForGroups(String s, String regex, List<String> groups) {
         Map<String, List<String>> matchingGroups = new HashMap<>();
         groups.forEach(key -> matchingGroups.put(key, new ArrayList<>()));
         for (String group : groups) {

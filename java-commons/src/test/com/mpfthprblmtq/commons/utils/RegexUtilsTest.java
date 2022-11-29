@@ -18,15 +18,6 @@ class RegexUtilsTest {
     }
 
     @Test
-    public void testGetMatchingGroups() {
-        Map<String, String> actual = RegexUtils.getMatchingGroups(
-                "Muse - Will of the People", "(?<Artist>.*) - (?<Album>.*)", Arrays.asList("Artist", "Album"));
-        assertNotNull(actual);
-        assertEquals("Muse", actual.get("Artist"));
-        assertEquals("Will of the People", actual.get("Album"));
-    }
-
-    @Test
     public void testGetAllMatchesForGroup() {
         List<String> actual = RegexUtils.getAllMatchesForGroup(
                 " 2022 asdf 7890 what 38", ".*(?<year>\\d{4}).*", "year");
@@ -38,10 +29,10 @@ class RegexUtilsTest {
 
     @Test
     public void testGetAllMatchingGroups() {
-        Map<String, List<String>> actual = RegexUtils.getAllMatchingGroups(
+        Map<String, List<String>> actual = RegexUtils.getAllMatchesForGroups(
                 " 2022 asdf 7890 what 38", "((?<year>\\d{4})|(?<word>[A-Za-z]+))", Arrays.asList("year", "word"));
         assertNotNull(actual);
-        assertNotEquals(0, actual.size());
+        assertEquals(2, actual.size());
         assertEquals(2, actual.get("year").size());
         assertEquals(2, actual.get("word").size());
         assertEquals("2022", actual.get("year").get(0));
