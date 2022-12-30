@@ -144,4 +144,60 @@ class StringUtilsTest {
     public void testEqualsIgnoreCase_returnsFalseForDifferentStrings() {
         assertFalse(StringUtils.equalsIgnoreCase("test", "test1"));
     }
+
+    @Test
+    public void testTruncateWithEllipses_returnsTruncatedString() {
+        String tested = "This is a really long string, and should probably be shortened.";
+        String result = StringUtils.truncateWithEllipses(tested, 20);
+        assertEquals(20, result.length());
+        assertTrue(result.endsWith("..."));
+    }
+
+    @Test
+    public void testTruncateWithEllipses_returnsGivenStringIfLessThanLength() {
+        String tested = "Hello World!";
+        String result = StringUtils.truncateWithEllipses(tested, 20);
+        assertEquals(tested, result);
+    }
+
+    @Test
+    public void testTruncateWithEllipsesTrailing_returnsGivenStringIfLessThanLength() {
+        String tested = "Hello World!";
+        String result = StringUtils.truncateWithEllipsesTrailing(tested, 20);
+        assertEquals(tested, result);
+    }
+
+    @Test
+    public void testTruncateWithEllipses_returnsNullIfGivenNull() {
+        String result = StringUtils.truncateWithEllipses(null, 20);
+        assertNull(result);
+    }
+
+    @Test
+    public void testTruncateWithEllipses_returnsGivenStringIfLengthIsLessThanThree() {
+        String tested = "Hi!";
+        String result = StringUtils.truncateWithEllipses(tested, 20);
+        assertEquals(tested, result);
+    }
+
+    @Test
+    public void testTruncateWithEllipsesTrailing_returnsTruncatedString() {
+        String tested = "This is a really long string, and should probably be shortened.";
+        String result = StringUtils.truncateWithEllipsesTrailing(tested, 20);
+        assertEquals(20, result.length());
+        assertTrue(result.startsWith("..."));
+    }
+
+    @Test
+    public void testTruncateWithEllipsesTrailing_returnsNullIfGivenNull() {
+        String result = StringUtils.truncateWithEllipsesTrailing(null, 20);
+        assertNull(result);
+    }
+
+    @Test
+    public void testTruncateWithEllipsesTrailing_returnsGivenStringIfLengthIsLessThanThree() {
+        String tested = "Hi!";
+        String result = StringUtils.truncateWithEllipsesTrailing(tested, 20);
+        assertEquals(tested, result);
+    }
 }

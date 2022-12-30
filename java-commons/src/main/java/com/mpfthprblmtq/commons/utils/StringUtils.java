@@ -160,4 +160,30 @@ public class StringUtils {
     public static boolean equalsIgnoreCase(String string1, String string2) {
         return string1 == null ? string2 == null : string1.equalsIgnoreCase(string2);
     }
+
+    /**
+     * Truncates string at the end with ellipses (...)
+     * @param s the string to truncate
+     * @param length the max length the string can be
+     * @return a truncated string
+     */
+    public static String truncateWithEllipses(String s, int length) {
+        if (isEmpty(s) || s.length() < 3) {
+            return s;
+        }
+        return s.length() < length ? s : s.substring(0, length - 3).concat("...");
+    }
+
+    /**
+     * Truncates string at the beginning with ellipses (...)
+     * @param s the string to truncate
+     * @param length the max length the string can be
+     * @return a truncated string
+     */
+    public static String truncateWithEllipsesTrailing(String s, int length) {
+        if (isEmpty(s) || s.length() < 3) {
+            return s;
+        }
+        return s.length() < length ? s : "...".concat(s.substring(s.length() - (length - 3)));
+    }
 }
