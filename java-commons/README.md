@@ -1,6 +1,6 @@
 # Java Commons
 
-![Generic badge](https://img.shields.io/badge/version-0.0.2-brightgreen.svg)
+![Generic badge](https://img.shields.io/badge/version-0.4.0-brightgreen.svg)
 ![Language badge](https://img.shields.io/badge/Java-8-blue)
 ![Platform badge](https://img.shields.io/badge/Platform-OSX-lightgrey)
 
@@ -13,6 +13,40 @@ A library I made to clean up some projects of mine.  Built with Java 8.
 [Github Project (feature/bug tracking)](https://github.com/users/mpfthprblmtq/projects/1)
 
 ---
+
+## High Level
+
+This library contains all the JARs for Lombok (v1.18.24), Jackson (v2.9.8), and Mockito (v5.1.1).  JUnit5.7.0 comes bundled with IntelliJ, so no need to include that here.  This allows whatever project you're building to just pull in this library, and everything is included.
+
+```java
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+public class MockTest {
+
+   @Mock
+   MyService myServiceMock;
+
+   @InjectMocks
+   MyTestedClass underTest;
+
+   @BeforeAll
+   static void setup() {
+      underTest = new MyService();
+      mockStatic(StaticUtilsClass.class);
+   }
+
+   @Test
+   public void testMocks() {
+      // you can mock either object classes or static utilities classes
+      when(myServiceMock.methodWithParameters("1", "2")).thenReturn("3");
+      when(StaticUtilsClass.staticMethodWithParameters(myObject)).thenReturn("testString");
+      
+      String result = underTest.performLogic();
+      assertNotNull(result);
+   }
+}
+```
 
 ## Contents
 
