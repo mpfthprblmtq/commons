@@ -41,8 +41,8 @@ public class Logger {
 
     /**
      * Constructor
-     * @param appSupportPath, the path of the support directory
-     * @param developerMode, a boolean to indicate if we're in development or deployed
+     * @param appSupportPath the path of the support directory
+     * @param developerMode a boolean to indicate if we're in development or deployed
      */
     public Logger(String appSupportPath, boolean developerMode) {
 

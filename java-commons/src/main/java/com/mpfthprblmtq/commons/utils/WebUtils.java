@@ -10,7 +10,7 @@
 package com.mpfthprblmtq.commons.utils;
 
 // imports
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,7 +28,7 @@ public class WebUtils {
     /**
      * Opens a webpage with the specified url
      *
-     * @param url, the url to open
+     * @param url the url to open
      * @throws URISyntaxException if the URI is malformed
      * @throws IOException if there's issues opening the page
      * @throws Exception if Desktop is not supported

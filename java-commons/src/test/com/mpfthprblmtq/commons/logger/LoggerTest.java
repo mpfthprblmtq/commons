@@ -7,7 +7,9 @@ import testingUtils.TestingUtils;
 import com.mpfthprblmtq.commons.utils.FileUtils;
 import com.mpfthprblmtq.commons.utils.StringUtils;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

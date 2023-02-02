@@ -10,7 +10,7 @@
 package com.mpfthprblmtq.commons.utils;
 
 // imports
-import javax.swing.*;
+import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.Desktop;
 import java.io.File;
@@ -23,8 +23,8 @@ public class FileUtils {
 
     /**
      * Helper Function that lists and stores all files in a directory and subdirectories
-     * @param directory, the directory to list files from
-     * @param files, the arrayList to store the files in
+     * @param directory the directory to list files from
+     * @param files the arrayList to store the files in
      */
     public static void listFiles(File directory, List<File> files) {
         // get all the files from a directory
@@ -41,7 +41,7 @@ public class FileUtils {
 
     /**
      * Helper function that lists and stores all files in a directory and subdirectories
-     * @param directory, the directory to list files from
+     * @param directory the directory to list files from
      * @return a list of all files
      */
     public static List<File> listFiles(File directory) {
@@ -52,8 +52,8 @@ public class FileUtils {
 
     /**
      * Renames the file and logs the result
-     * @param from, the file to change
-     * @param to, the file to change from to
+     * @param from the file to change
+     * @param to the file to change from to
      * @return the result of the change
      * @throws Exception if renaming is unsuccessful
      */
@@ -67,7 +67,7 @@ public class FileUtils {
 
     /**
      * Cleans a string if it's a file on OSX systems
-     * @param s, the string to clean (replace : with /)
+     * @param s the string to clean (replace : with /)
      * @return a cleaned string
      */
     public static String cleanFilenameForOSX(String s) {
@@ -101,7 +101,7 @@ public class FileUtils {
 
     /**
      * Opens a file
-     * @param file, the file to open
+     * @param file the file to open
      * @throws IOException if there are issues opening the file
      */
     public static void openFile(File file) throws IOException, Exception {
@@ -133,12 +133,12 @@ public class FileUtils {
      * Creates a JFileChooser, configures it, and launches it
      * Returns a single index array if there's only one file returned
      *
-     * @param title,                   the title of the window
-     * @param approveButtonText,       the text to show on the approve button
-     * @param selectionMode,           the mode for selecting files
-     * @param multipleSelection,       a boolean for allowing multiple file selection in the window
-     * @param openAt,                  an optional parameter to open the JFileChooser at a certain location
-     * @param fileNameExtensionFilter, an optional parameter to set the filter to look at files on
+     * @param title                   the title of the window
+     * @param approveButtonText       the text to show on the approve button
+     * @param selectionMode           the mode for selecting files
+     * @param multipleSelection       a boolean for allowing multiple file selection in the window
+     * @param openAt                  an optional parameter to open the JFileChooser at a certain location
+     * @param fileNameExtensionFilter an optional parameter to set the filter to look at files on
      * @return a file array of the selected file(s)
      */
     @SuppressWarnings("all") // for the always true/false assertion
@@ -182,7 +182,7 @@ public class FileUtils {
 
     /**
      * Gets the common base starting point for a list of files
-     * @param files, the list of files to search
+     * @param files the list of files to search
      * @return a File starting point
      */
     public static File getStartingPoint(List<File> files) {

@@ -1,29 +1,34 @@
 import React, {FunctionComponent} from "react";
 import logo from "../../logo.svg";
 import {RouterPaths} from "../../utils/RouterPaths";
+import {StyledButton, StyledLink, StyledText} from "../../app/App.styles";
 
 const HomeComponent: FunctionComponent = () => {
+
+    const alertFunction = (text: string) => {
+        alert(text);
+    }
+
     return (
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
-                <p>
+                <StyledText color="gray">
                     Edit <code>src/app/App.tsx</code> and save to reload.
-                </p>
-                <a
+                </StyledText>
+                <StyledLink
                     className="App-link"
                     href={RouterPaths.DogCeo}
-                    // target="_blank"
                     rel="noopener noreferrer">
                     Dog CEO
-                </a>
-                <a
+                </StyledLink>
+                <StyledLink
                     className="App-link"
                     href={RouterPaths.Test}
-                    // target="_blank"
                     rel="noopener noreferrer">
                     Test Component
-                </a>
+                </StyledLink>
+                <StyledButton variant="contained" onClick={() => alertFunction("Hooray!")}>Test Button</StyledButton>
             </header>
         </div>
     );

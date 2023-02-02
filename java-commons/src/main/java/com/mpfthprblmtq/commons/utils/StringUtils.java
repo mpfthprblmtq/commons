@@ -96,7 +96,7 @@ public class StringUtils {
 
     /**
      * Utility function, finds common longest string from list of strings
-     * @param strings, the list of strings
+     * @param strings the list of strings
      * @return the longest common string
      */
     public static String findCommonString(List<String> strings) {
@@ -127,8 +127,8 @@ public class StringUtils {
 
     /**
      * Checks if a string is the same throughout a list
-     * @param str, the string to check
-     * @param list, the list of strings
+     * @param str the string to check
+     * @param list the list of strings
      * @return the result of the check
      */
     public static boolean checkIfSame(String str, List<String> list) {

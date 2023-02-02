@@ -43,7 +43,7 @@ public class DateUtils {
     /**
      * Formats a Date object to a simple string
      *
-     * @param date, the date to format
+     * @param date the date to format
      * @return the formatted date
      */
     public static String formatSimpleDate(Date date) {
@@ -54,7 +54,7 @@ public class DateUtils {
     /**
      * Formats a Date object to a more complex string
      *
-     * @param date, the date to format
+     * @param date the date to format
      * @return the formatted date
      */
     public static String formatDetailedDateTime(Date date) {
@@ -65,8 +65,8 @@ public class DateUtils {
     /**
      * Formats a Date object to a custom string format
      *
-     * @param date, the date to format
-     * @param sdf, the SimpleDateFormat to format with
+     * @param date the date to format
+     * @param sdf the SimpleDateFormat to format with
      * @return the formatted date
      */
     public static String formatCustomDateTime(Date date, SimpleDateFormat sdf) {
@@ -110,7 +110,7 @@ public class DateUtils {
 
     /**
      * Checks to see if a date is the same as another
-     * @param date, the date to compare to today
+     * @param date the date to compare to today
      * @return the result of the check
      */
     public static boolean isDateSameAsToday(Date date) {
