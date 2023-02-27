@@ -16,13 +16,14 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // class FileUtils
 public class FileUtils {
 
     /**
-     * Helper Function that lists and stores all files in a directory and subdirectories
+     * Helper function that lists and stores all files in a directory and subdirectories
      * @param directory the directory to list files from
      * @param files the arrayList to store the files in
      */
@@ -48,6 +49,16 @@ public class FileUtils {
         List<File> files = new ArrayList<>();
         listFiles(directory, files);
         return files;
+    }
+
+    /**
+     * Helper function that lists files in the given directory (shallow, no subdirectories listing)
+     * @param directory the directory to list files from
+     * @return a list of all files in that directory
+     */
+    public static List<File> listFilesShallow(File directory) {
+        File[] files = directory.listFiles();
+        return files != null ? Arrays.asList(files) : new ArrayList<>();
     }
 
     /**

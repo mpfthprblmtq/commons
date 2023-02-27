@@ -104,4 +104,13 @@ public class FileUtilsTest {
     public void testShowInFolder() {
         // TODO is this even possible to test?
     }
+
+    @Test
+    public void testListFilesShallow() {
+        List<File> expectedFiles = Arrays.asList(
+                new File(testFolder.getPath() + "/folder2/file5.txt"),
+                new File(testFolder.getPath() + "/folder2/file6.txt"),
+                new File(testFolder.getPath() + "/folder2/folder3"));
+        assertEquals(expectedFiles, FileUtils.listFilesShallow(new File(testFolder.getPath() + "/folder2")));
+    }
 }
