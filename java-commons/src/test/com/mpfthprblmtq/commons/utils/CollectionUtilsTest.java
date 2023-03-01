@@ -3,6 +3,7 @@ package com.mpfthprblmtq.commons.utils;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,18 +14,34 @@ class CollectionUtilsTest {
 
     @Test
     @SuppressWarnings("all")    // for the "Result of 'CollectionUtils.isEmpty(null)' is always 'true'" warning
-    public void testIsEmpty() {
+    public void testIsEmptyCollection() {
         assertTrue(CollectionUtils.isEmpty(CollectionUtils.EMPTY_LIST));
-        assertTrue(CollectionUtils.isEmpty(null));
+        assertTrue(CollectionUtils.isEmpty((Collection<?>) null));
         assertFalse(CollectionUtils.isEmpty(Arrays.asList("1", "2")));
     }
 
     @Test
     @SuppressWarnings("all")    // for the "Result of 'CollectionUtils.isNotEmpty(null)' is always 'false'" warning
-    public void testIsNotEmpty() {
+    public void testIsNotEmptyCollection() {
         assertTrue(CollectionUtils.isNotEmpty(Arrays.asList("1", "2")));
         assertFalse(CollectionUtils.isNotEmpty(CollectionUtils.EMPTY_LIST));
-        assertFalse(CollectionUtils.isNotEmpty(null));
+        assertFalse(CollectionUtils.isNotEmpty((Collection<?>) null));
+    }
+
+    @Test
+    @SuppressWarnings("all")    // for the "Result of 'CollectionUtils.isEmpty(null)' is always 'true'" warning
+    public void testIsEmptyArray() {
+        assertTrue(CollectionUtils.isEmpty(new String[0]));
+        assertTrue(CollectionUtils.isEmpty((String[]) null));
+        assertFalse(CollectionUtils.isEmpty(new String[]{"1", "2"}));
+    }
+
+    @Test
+    @SuppressWarnings("all")    // for the "Result of 'CollectionUtils.isNotEmpty(null)' is always 'false'" warning
+    public void testIsNotEmptyArray() {
+        assertTrue(CollectionUtils.isNotEmpty(new String[]{"1", "2"}));
+        assertFalse(CollectionUtils.isNotEmpty(new String[0]));
+        assertFalse(CollectionUtils.isNotEmpty((String[]) null));
     }
 
     @Test

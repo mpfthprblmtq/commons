@@ -47,6 +47,24 @@ public class CollectionUtils {
     }
 
     /**
+     * Null-safe check on if a collection is empty or null
+     * @param collection the collection to check
+     * @return the result of the check
+     */
+    public static <T> boolean isEmpty(T[] collection) {
+        return collection == null || collection.length == 0;
+    }
+
+    /**
+     * Inverse of isEmpty(), will check if the collection is not empty and not null
+     * @param collection the collection to check
+     * @return the result of the check
+     */
+    public static <T> boolean isNotEmpty(T[] collection) {
+        return !isEmpty(collection);
+    }
+
+    /**
      * Creates a list with the given parameters.  If no elements are handed to it, will return a blank list.
      * @param list the elements to create the list from (comma delimited values)
      * @param <T> the generic object type to use for the list
