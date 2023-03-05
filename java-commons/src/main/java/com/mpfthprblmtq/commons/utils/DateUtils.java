@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 // class DateUtils
+@SuppressWarnings("unused")
 public class DateUtils {
 
     // constant date formats

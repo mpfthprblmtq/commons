@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Locale;
 
 // class StringUtils
+@SuppressWarnings("unused")
 public class StringUtils {
 
     // constants
@@ -84,7 +85,7 @@ public class StringUtils {
 
     /**
      * Formats a number for currency
-     * This overload takes a locale so we can use different locales
+     * This overload takes a locale, so we can use different locales
      * @param value the double to format
      * @param locale the locale to format with
      * @return the formatted currency amount

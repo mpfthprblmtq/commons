@@ -22,7 +22,7 @@ public final class Translation {
      * @param translationFiles a list of file paths with dictionary values
      * @throws Exception if given null/empty list, given invalid file types
      */
-    public static void initializeTranslationFiles(List<String> translationFiles) throws Exception {
+    public static void initializeTranslationFiles(List<String> translationFiles) {
         translationInstance = new TranslationInstance(translationFiles);
     }
 

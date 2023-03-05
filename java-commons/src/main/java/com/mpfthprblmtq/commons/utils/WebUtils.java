@@ -23,6 +23,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 // class WebUtils
+@SuppressWarnings("unused")
 public class WebUtils {
 
     /**

@@ -143,6 +143,7 @@ public class Logger {
      * @param errorString the localized string
      * @param ex the exception that was thrown
      */
+    @SuppressWarnings("Duplicates")
     public void logError(String errorString, Exception ex) {
 
         // format today's date
@@ -162,6 +163,7 @@ public class Logger {
      * Method that actually does the logging for errors
      * @param errorString the localized string
      */
+    @SuppressWarnings("Duplicates")
     public void logError(String errorString) {
 
         // format today's date
