@@ -42,4 +42,18 @@ class RegexUtilsTest {
         assertEquals("what", actual.get("word").get(1));
     }
 
+    @Test
+    public void testCountOccurrences_returnsZeroForStringWithNoMatches() {
+        String toCheck = "This is a string where we count the number of occurrences.";
+        String checkFor = "\\{}";
+        assertEquals(0, RegexUtils.countOccurrencesOfMatch(toCheck, checkFor));
+    }
+
+    @Test
+    public void testCountOccurrences_returnsTwoForStringWithTwoMatches() {
+        String toCheck = "This is a {} where we count the number of {}.";
+        String checkFor = "\\{}";
+        assertEquals(2, RegexUtils.countOccurrencesOfMatch(toCheck, checkFor));
+    }
+
 }
