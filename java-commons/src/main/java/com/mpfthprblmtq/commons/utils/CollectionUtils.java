@@ -48,6 +48,7 @@ public class CollectionUtils {
 
     /**
      * Null-safe check on if a collection is empty or null
+     * @param <T> the generic type of the array
      * @param collection the collection to check
      * @return the result of the check
      */
@@ -57,6 +58,7 @@ public class CollectionUtils {
 
     /**
      * Inverse of isEmpty(), will check if the collection is not empty and not null
+     * @param <T> the generic type of the array
      * @param collection the collection to check
      * @return the result of the check
      */
