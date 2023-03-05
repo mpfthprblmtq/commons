@@ -78,9 +78,11 @@ class StringUtilsTest {
         String expected2 = "$12.30";
         assertEquals(expected2, StringUtils.formatForCurrency(value2));
 
+        // have to do this weird thing for the " " vs. NBSP thing
         double value3 = 56.78;
-        String expected3 = "56,78 €";
-        assertEquals(expected3, StringUtils.formatForCurrency(value3, new Locale("de",  "DE")));
+        String expected3 = "56,78";
+        String actual = StringUtils.formatForCurrency(value3, Locale.forLanguageTag("de-DE"));
+        assertTrue(actual.startsWith(expected3) && actual.endsWith("€"));
     }
 
     @Test
