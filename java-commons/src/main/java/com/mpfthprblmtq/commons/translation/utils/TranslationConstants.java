@@ -1,4 +1,4 @@
-package com.mpfthprblmtq.commons.translation;
+package com.mpfthprblmtq.commons.translation.utils;
 
 import com.mpfthprblmtq.commons.utils.StringUtils;
 

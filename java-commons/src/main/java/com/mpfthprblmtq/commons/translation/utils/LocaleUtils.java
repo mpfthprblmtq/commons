@@ -6,7 +6,7 @@ import com.mpfthprblmtq.commons.utils.StringUtils;
 
 import java.util.Locale;
 
-import static com.mpfthprblmtq.commons.translation.TranslationConstants.*;
+import static com.mpfthprblmtq.commons.translation.utils.TranslationConstants.*;
 
 public class LocaleUtils {
 
