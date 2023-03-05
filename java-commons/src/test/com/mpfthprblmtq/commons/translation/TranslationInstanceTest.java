@@ -1,6 +1,8 @@
 package com.mpfthprblmtq.commons.translation;
 
 import com.mpfthprblmtq.commons.translation.model.exception.FileTypeNotSupportedException;
+import com.mpfthprblmtq.commons.translation.model.exception.NotEnoughSubstitutionValuesException;
+import com.mpfthprblmtq.commons.translation.model.exception.TooManySubstitutionValuesException;
 import com.mpfthprblmtq.commons.utils.StringUtils;
 import org.junit.jupiter.api.Test;
 
@@ -95,6 +97,40 @@ class TranslationInstanceTest {
         assertEquals("Hello World!", translationInstance.t("HELLO_WORLD"));
         translationInstance.setCurrentLocale(Locale.forLanguageTag("de-DE"));
         assertEquals("Hallo Welt!", translationInstance.t("HELLO_WORLD"));
+    }
+
+    @Test
+    public void testTranslate_whenGivenTranslationWithSubstitutions_thenTranslatesWithTextReplacement() throws Exception {
+        TranslationInstance translationInstance = new TranslationInstance(
+                Collections.singletonList("./src/test/resources/de_DE/de_DE.yaml"));
+        String result = translationInstance.t("I_HAVE", 3, "Bananen");
+        assertEquals("Ich habe 3 Bananen.", result);
+    }
+
+    @Test
+    public void testTranslate_whenGivenTranslationWithSubstitutions_andNotEnoughSubstitutionsGiven_thenThrowsException() throws Exception {
+        TranslationInstance translationInstance = new TranslationInstance(
+                Collections.singletonList("./src/test/resources/de_DE/de_DE.yaml"));
+        NotEnoughSubstitutionValuesException expectedThrown = assertThrows(
+                NotEnoughSubstitutionValuesException.class,
+                () -> translationInstance.t("I_HAVE", 3),
+                "Expected NotEnoughSubstitutionValuesException, but not thrown.");
+        assertTrue(expectedThrown.getMessage().startsWith("Not enough substitution values given for given translation"));
+        assertTrue(expectedThrown.getMessage().contains("Expected 2, but given 1"));
+        assertTrue(expectedThrown.getMessage().endsWith("Ich habe {} {}."));
+    }
+
+    @Test
+    public void testTranslate_whenGivenTranslationWithSubstitutions_andTooManySubstitutionsGiven_thenThrowsException() throws Exception {
+        TranslationInstance translationInstance = new TranslationInstance(
+                Collections.singletonList("./src/test/resources/de_DE/de_DE.yaml"));
+        TooManySubstitutionValuesException expectedThrown = assertThrows(
+                TooManySubstitutionValuesException.class,
+                () -> translationInstance.t("I_HAVE", 3, "Bananen", "Extra"),
+                "Expected TooManySubstitutionValuesException, but not thrown.");
+        assertTrue(expectedThrown.getMessage().startsWith("Too many substitution values given for given translation"));
+        assertTrue(expectedThrown.getMessage().contains("Expected 2, but given 3"));
+        assertTrue(expectedThrown.getMessage().endsWith("Ich habe {} {}."));
     }
 
 }

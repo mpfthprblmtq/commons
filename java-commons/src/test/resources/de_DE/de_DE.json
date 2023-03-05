@@ -3,6 +3,7 @@
     "./src/test/resources/de_DE/feature1.json"
   ],
   "dictionaryValues": {
-    "HELLO_WORLD": "Hallo Welt!"
+    "HELLO_WORLD": "Hallo Welt!",
+    "I_HAVE": "Ich habe {} {}."
   }
 }

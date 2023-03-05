@@ -2,3 +2,4 @@ subDictionaryPaths:
   - ./src/test/resources/de_DE/feature1.yaml
 dictionaryValues:
   HELLO_WORLD: Hallo Welt!
+  I_HAVE: Ich habe {} {}.

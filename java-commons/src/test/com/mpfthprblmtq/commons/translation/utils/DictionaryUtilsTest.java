@@ -26,7 +26,7 @@ class DictionaryUtilsTest {
         Dictionary dictionary = DictionaryUtils.initializeDictionary(
                 new File("./src/test/resources/de_DE/de_DE." + fileType));
         assertNotNull(dictionary);
-        assertEquals(2, dictionary.getDictionaryValues().size());
+        assertEquals(3, dictionary.getDictionaryValues().size());
         assertEquals("Hallo Welt!", dictionary.getDictionaryValues().get("HELLO_WORLD"));
         assertEquals("Auf Wiedersehen Welt!", dictionary.getDictionaryValues().get("GOODBYE_WORLD"));
     }
