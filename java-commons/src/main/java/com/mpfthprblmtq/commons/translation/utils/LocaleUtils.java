@@ -19,6 +19,11 @@ public class LocaleUtils {
      * @throws InvalidLocaleException if the locale given is invalid
      */
     public static Locale getLocaleFromFilePath(String translationFile) throws InvalidLocaleException {
+        // sanity check against null/empty file path
+        if (StringUtils.isEmpty(translationFile)) {
+            return null;
+        }
+
         // try to infer locale from filepath
         if (translationFile.matches(EXACT_LOCALE_FILEPATH_REGEX)) {
             // we have an exact match on the locale (xx-XX) format
@@ -58,7 +63,7 @@ public class LocaleUtils {
      * @return a valid locale, or null if the locale is invalid
      * @throws InvalidLocaleException if the language/country combination is invalid
      */
-    public static Locale getStandardizedLocale(String language, String country) throws InvalidLocaleException {
+    protected static Locale getStandardizedLocale(String language, String country) throws InvalidLocaleException {
 
         // ISO2 data to create the locale with
         String ISO2Language = StringUtils.EMPTY;
@@ -92,6 +97,9 @@ public class LocaleUtils {
         if (AVAILABLE_LOCALES.contains(locale)) {
             return locale;
         }
-        throw new InvalidLocaleException("Invalid Locale given: " + locale);
+
+        // if at this point, locale is invalid, build locale string to return to client
+        String badLocale = language.concat("-").concat(country);
+        throw new InvalidLocaleException("Invalid Locale given: " + badLocale);
     }
 }

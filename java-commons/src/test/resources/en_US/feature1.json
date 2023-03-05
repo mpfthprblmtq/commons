@@ -1,4 +1,7 @@
 {
+  "subDictionaryPaths": [
+    "./src/test/resources/en_US/feature2.json"
+  ],
   "dictionaryValues": {
     "GOODBYE_WORLD": "Goodbye World!"
   }

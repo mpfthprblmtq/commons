@@ -1,2 +1,4 @@
+subDictionaryPaths:
+  - ./src/test/resources/en_US/feature2.yaml
 dictionaryValues:
   GOODBYE_WORLD: "Goodbye World!"

@@ -9,15 +9,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Locale;
 
-import static com.mpfthprblmtq.commons.translation.TranslationStatic.t;
+import static com.mpfthprblmtq.commons.translation.Translation.t;
 import static org.junit.jupiter.api.Assertions.*;
 
-class TranslationStaticTest {
+class TranslationTest {
 
     @AfterEach
     public void afterEach() {
-        TranslationStatic.setCurrentLocale(null);
-        TranslationStatic.setDictionaries(null);
+        Translation.getTranslationInstance().setCurrentLocale(null);
+        Translation.getTranslationInstance().setDictionaries(null);
     }
 
     @Test
@@ -25,7 +25,7 @@ class TranslationStaticTest {
         String badFile = "/test/badFile.txt";
         FileTypeNotSupportedException expectedThrown = assertThrows(
                 FileTypeNotSupportedException.class,
-                () -> TranslationStatic.initializeTranslationFiles(Collections.singletonList(badFile)),
+                () -> Translation.initializeTranslationFiles(Collections.singletonList(badFile)),
                 "Expected FileTypeNotSupportedException, but not thrown.");
         assertTrue(expectedThrown.getMessage()
                 .contentEquals("Invalid translation file given, must be of type JSON or YAML: " + badFile));
@@ -35,7 +35,7 @@ class TranslationStaticTest {
     public void testTranslationInitialize_whenGivenBlankString_thenThrowsException() {
         Exception expectedThrown = assertThrows(
                 Exception.class,
-                () -> TranslationStatic.initializeTranslationFiles(Collections.singletonList(StringUtils.EMPTY)),
+                () -> Translation.initializeTranslationFiles(Collections.singletonList(StringUtils.EMPTY)),
                 "Expected FileTypeNotSupportedException, but not thrown.");
         assertTrue(expectedThrown.getMessage()
                 .contentEquals("Null or empty translation file path given!"));
@@ -45,62 +45,62 @@ class TranslationStaticTest {
     public void testTranslationInitialize_whenGivenNull_thenThrowsException() {
         Exception expectedThrown = assertThrows(
                 Exception.class,
-                () -> TranslationStatic.initializeTranslationFiles(null),
+                () -> Translation.initializeTranslationFiles(null),
                 "Expected FileTypeNotSupportedException, but not thrown.");
         assertTrue(expectedThrown.getMessage()
                 .contentEquals("No translation files given!"));
     }
 
     @Test
-    public void testInitialize_whenGivenOneLocale_thenTranslates_JSON() throws Exception {
-        TranslationStatic.initializeTranslationFiles(
+    public void testTranslationInitialize_whenGivenOneLocale_thenTranslates_JSON() throws Exception {
+        Translation.initializeTranslationFiles(
                 Collections.singletonList("./src/test/resources/de_DE/de_DE.json"));
         assertEquals(t("HELLO_WORLD"), "Hallo Welt!");
     }
 
     @Test
-    public void testInitialize_whenGivenTwoLocales_andLocaleIsSet_thenTranslates_JSON() throws Exception {
-        TranslationStatic.initializeTranslationFiles(
+    public void testTranslationInitialize_whenGivenTwoLocales_andLocaleIsSet_thenTranslates_JSON() throws Exception {
+        Translation.initializeTranslationFiles(
                 Arrays.asList("./src/test/resources/en_US/en_US.json", "./src/test/resources/de_DE/de_DE.json"));
-        TranslationStatic.setCurrentLocale(Locale.forLanguageTag("de-DE"));
+        Translation.getTranslationInstance().setCurrentLocale(Locale.forLanguageTag("de-DE"));
         assertEquals("Hallo Welt!", t("HELLO_WORLD"));
     }
 
     @Test
-    public void testInitialize_whenGivenTwoLocales_andLocaleIsNotSet_thenDoesntTranslate_JSON() throws Exception {
-        TranslationStatic.initializeTranslationFiles(
+    public void testTranslationInitialize_whenGivenTwoLocales_andLocaleIsNotSet_thenDoesntTranslate_JSON() throws Exception {
+        Translation.initializeTranslationFiles(
                 Arrays.asList("./src/test/resources/en_US/en_US.json", "./src/test/resources/de_DE/de_DE.json"));
         assertEquals("HELLO_WORLD", t("HELLO_WORLD"));
     }
 
     @Test
-    public void testInitialize_whenGivenOneLocale_thenTranslates() throws Exception {
-        TranslationStatic.initializeTranslationFiles(
+    public void testTranslationInitialize_whenGivenOneLocale_thenTranslates() throws Exception {
+        Translation.initializeTranslationFiles(
                 Collections.singletonList("./src/test/resources/de_DE/de_DE.yaml"));
         assertEquals(t("HELLO_WORLD"), "Hallo Welt!");
     }
 
     @Test
-    public void testInitialize_whenGivenTwoLocales_andLocaleIsSet_thenTranslates() throws Exception {
-        TranslationStatic.initializeTranslationFiles(
+    public void testTranslationInitialize_whenGivenTwoLocales_andLocaleIsSet_thenTranslates() throws Exception {
+        Translation.initializeTranslationFiles(
                 Arrays.asList("./src/test/resources/en_US/en_US.yaml", "./src/test/resources/de_DE/de_DE.yaml"));
-        TranslationStatic.setCurrentLocale(Locale.forLanguageTag("de-DE"));
+        Translation.setCurrentLocale(Locale.forLanguageTag("de-DE"));
         assertEquals("Hallo Welt!", t("HELLO_WORLD"));
     }
 
     @Test
-    public void testInitialize_whenGivenTwoLocales_andLocaleIsNotSet_thenDoesntTranslate() throws Exception {
-        TranslationStatic.initializeTranslationFiles(
+    public void testTranslationInitialize_whenGivenTwoLocales_andLocaleIsNotSet_thenDoesntTranslate() throws Exception {
+        Translation.initializeTranslationFiles(
                 Arrays.asList("./src/test/resources/en_US/en_US.yaml", "./src/test/resources/de_DE/de_DE.yaml"));
         assertEquals("HELLO_WORLD", t("HELLO_WORLD"));
     }
 
     @Test
-    public void testInitialize_whenGivenTwoLocales_andLocaleIsSet_andThenChanged_thenTranslatesWithNewLocale() throws Exception {
-        TranslationStatic.initializeTranslationFiles(Arrays.asList("./src/test/resources/en_US/en_US.yaml", "./src/test/resources/de_DE/de_DE.yaml"));
-        TranslationStatic.setCurrentLocale(Locale.forLanguageTag("en-US"));
+    public void testTranslationInitialize_whenGivenTwoLocales_andLocaleIsSet_andThenChanged_thenTranslatesWithNewLocale() throws Exception {
+        Translation.initializeTranslationFiles(Arrays.asList("./src/test/resources/en_US/en_US.yaml", "./src/test/resources/de_DE/de_DE.yaml"));
+        Translation.setCurrentLocale(Locale.forLanguageTag("en-US"));
         assertEquals(t("HELLO_WORLD"), "Hello World!");
-        TranslationStatic.setCurrentLocale(Locale.forLanguageTag("de-DE"));
+        Translation.setCurrentLocale(Locale.forLanguageTag("de-DE"));
         assertEquals(t("HELLO_WORLD"), "Hallo Welt!");
     }
 }

@@ -10,6 +10,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TranslationConstants {
 
@@ -17,8 +18,11 @@ public class TranslationConstants {
     public static final String LOCALE_FILEPATH_REGEX = "^.*[\\/\\\\](?<language>[a-z]{2,3})[-_](?<country>[A-Z]{2,3}).*$";
     public static final String EXACT_LOCALE_FILEPATH_REGEX = "^.*[\\/\\\\](?<locale>[a-z]{2}-[A-Z]{2}).*$";
 
-    // Set containing all valid locales from the Locale class
-    public static final Set<Locale> AVAILABLE_LOCALES = new HashSet<>(List.of(Locale.getAvailableLocales()));
+    // Set containing all valid locales from the Locale class (minus the blank locale since we don't need that)
+    public static final Set<Locale> AVAILABLE_LOCALES = new HashSet<>(
+            Stream.of(Locale.getAvailableLocales())
+                    .filter(locale -> StringUtils.isNotEmpty(locale.toString()))
+                    .collect(Collectors.toSet()));
 
     // List containing valid ISO2 countries
     // Used when checking against ISO3 country codes given
