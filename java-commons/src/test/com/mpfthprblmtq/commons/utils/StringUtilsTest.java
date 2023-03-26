@@ -1,5 +1,6 @@
 package com.mpfthprblmtq.commons.utils;
 
+import com.mpfthprblmtq.commons.objects.RequestProperties;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -35,6 +36,11 @@ class StringUtilsTest {
         assertEquals(StringUtils.EMPTY, StringUtils.validateString(""));
         assertEquals(StringUtils.EMPTY, StringUtils.validateString(null));
         assertNotEquals(StringUtils.EMPTY, StringUtils.validateString("x"));
+    }
+
+    @Test
+    public void testValidateString_withObject() {
+        assertNotEquals(StringUtils.EMPTY, StringUtils.validateString(new RequestProperties()));
     }
 
     @Test

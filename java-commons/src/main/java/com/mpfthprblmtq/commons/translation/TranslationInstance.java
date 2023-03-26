@@ -13,8 +13,8 @@ import com.mpfthprblmtq.commons.utils.StringUtils;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -61,16 +61,27 @@ public class TranslationInstance {
                 // if we only have one locale, then let's just use that one
                 if (translationFiles.size() == 1) {
                     setCurrentLocale(locale);
-                    getDictionaries().put(locale, DictionaryUtils.initializeDictionary(new File(translationFile)));
+                    getDictionaries().put(locale, DictionaryUtils.initializeDictionary(translationFile));
                 } else {
                     // more than one locale, fill the map
-                    getDictionaries().put(locale, DictionaryUtils.initializeDictionary(new File(translationFile)));
+                    getDictionaries().put(locale, DictionaryUtils.initializeDictionary(translationFile));
                 }
             } catch (IOException e) {
                 throw new InvalidTranslationFileException(e.getMessage());
             }
 
         }
+    }
+
+    /**
+     * Returns the list of currently supported Locales
+     * @return the list of currently supported Locales
+     */
+    public List<Locale> getSupportedLocales() {
+        if (getDictionaries() == null) {
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(getDictionaries().keySet());
     }
 
     /**
@@ -87,9 +98,9 @@ public class TranslationInstance {
      * for the values you give it in the {} characters
      * @param key the key to search for
      * @param replacements the strings to replace in the translated string
+     * @param <T> as long as whatever this class is has a toString() method
      * @return the value of that key in the translation map with substitutions, or the key itself if the value isn't in
      * the map
-     * @param <T> as long as whatever this class is has a toString() method
      */
     @SafeVarargs
     public final <T> String t(String key, T... replacements) {

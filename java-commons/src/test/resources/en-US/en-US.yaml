@@ -1,4 +1,4 @@
 subDictionaryPaths:
-  - ./src/test/resources/en_US/feature1.yaml
+  - /resources/en-US/feature1.yaml
 dictionaryValues:
   HELLO_WORLD: Hello World!

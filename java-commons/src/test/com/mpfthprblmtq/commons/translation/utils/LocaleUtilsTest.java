@@ -76,7 +76,7 @@ class LocaleUtilsTest {
 
     @Test
     public void testGetLocaleFromFilePath_whenCantInferFromFilePath_thenReturnNull() throws InvalidLocaleException {
-        assertNull(LocaleUtils.getLocaleFromFilePath("./src/test/resources/languages.json"));
+        assertNull(LocaleUtils.getLocaleFromFilePath("/resources/languages.json"));
     }
 
 }

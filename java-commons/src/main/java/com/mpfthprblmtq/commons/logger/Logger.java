@@ -40,6 +40,14 @@ public class Logger {
     private File eventLog;
 
     /**
+     * Default constructor, sets the error and event logs to the main console
+     */
+    public Logger() {
+        setSystemOutToConsole();
+        setSystemErrToConsole();
+    }
+
+    /**
      * Constructor
      * @param appSupportPath the path of the support directory
      * @param developerMode a boolean to indicate if we're in development or deployed

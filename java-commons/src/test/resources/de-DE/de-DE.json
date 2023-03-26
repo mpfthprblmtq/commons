@@ -1,6 +1,6 @@
 {
   "subDictionaryPaths": [
-    "./src/test/resources/de_DE/feature1.json"
+    "/resources/de-DE/feature1.json"
   ],
   "dictionaryValues": {
     "HELLO_WORLD": "Hallo Welt!",

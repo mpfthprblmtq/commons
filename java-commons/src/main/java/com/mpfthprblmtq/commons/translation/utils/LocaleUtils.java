@@ -57,7 +57,7 @@ public class LocaleUtils {
 
     /**
      * Helper method to try and get the ISO2 locale from ISO3 language or country. Uses the existing country ISO locales
-     * provided in java.util.Locale as well as a custom ISO3 -> ISO2 language map.
+     * provided in java.util.Locale as well as a custom ISO3 to ISO2 language map.
      * @param language the language to parse
      * @param country the country to parse
      * @return a valid locale, or null if the locale is invalid
