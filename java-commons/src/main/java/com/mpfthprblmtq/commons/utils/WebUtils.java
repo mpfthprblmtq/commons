@@ -10,6 +10,9 @@
 package com.mpfthprblmtq.commons.utils;
 
 // imports
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mpfthprblmtq.commons.objects.RequestProperties;
+
 import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +23,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 
 // class WebUtils
 @SuppressWarnings("unused")
@@ -47,22 +49,27 @@ public class WebUtils {
      * Makes a post request with the given parameters
      * @param url a URL object to call
      * @param doOutput a Boolean value used to determine if we're getting output from the request (defaults to false)
-     * @param requestProperties the headers for the request
-     * @param body a string representation of the request body
+     * @param requestProperties the request properties for the request, consisting of header values and body
+     * @param responseClass the class to build the response into
+     * @param <T> the class type of the response
      * @return a JSON String of the response
      * @throws IOException if there was a problem calling the service
      */
-    public static String post(URL url, Boolean doOutput, Map<String, String> requestProperties, String body) throws IOException {
+    public static <T> T post(URL url, Boolean doOutput, RequestProperties requestProperties, Class<T> responseClass) throws IOException {
         // set up the request
         HttpURLConnection http = (HttpURLConnection) url.openConnection();
         http.setRequestMethod("POST");
         http.setDoOutput(doOutput != null ? doOutput : false);
-        for (String property : requestProperties.keySet()) {
-            http.setRequestProperty(property, requestProperties.get(property));
+        if (requestProperties != null && requestProperties.getProperties() != null &&
+                !requestProperties.getProperties().isEmpty()) {
+            for (String property : requestProperties.getProperties().keySet()) {
+                http.setRequestProperty(property, requestProperties.getProperties().get(property));
+            }
         }
 
         // encode request body
-        byte[] out = body.getBytes(StandardCharsets.UTF_8);
+        byte[] out = requestProperties != null && StringUtils.isNotEmpty(requestProperties.getBody()) ?
+                requestProperties.getBody().getBytes(StandardCharsets.UTF_8) : new byte[0];
 
         // make the request
         OutputStream stream = http.getOutputStream();
@@ -80,21 +87,28 @@ public class WebUtils {
         // clean up
         http.disconnect();
 
-        return response.toString();
+        // build response
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(response.toString(), responseClass);
     }
 
     /**
      * Makes a get request with the given parameters
      * @param url a URL object to call
      * @param requestProperties the headers for the request
+     * @param responseClass the class to build the response into
+     * @param <T> the class type of the response
      * @return a JSON String of the response
      * @throws IOException if there was a problem calling the service
      */
-    public static String get(URL url, Map<String, String> requestProperties) throws IOException {
+    public static <T> T get(URL url, RequestProperties requestProperties, Class<T> responseClass) throws IOException {
         // set up the request
         HttpURLConnection http = (HttpURLConnection) url.openConnection();
-        for (String property : requestProperties.keySet()) {
-            http.setRequestProperty(property, requestProperties.get(property));
+        if (requestProperties != null && requestProperties.getProperties() != null
+                && !requestProperties.getProperties().isEmpty()) {
+            for (String property : requestProperties.getProperties().keySet()) {
+                http.setRequestProperty(property, requestProperties.getProperties().get(property));
+            }
         }
 
         // make the call and store the response in a string
@@ -109,6 +123,8 @@ public class WebUtils {
         // clean up
         http.disconnect();
 
-        return response.toString();
+        // build response
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(response.toString(), responseClass);
     }
 }

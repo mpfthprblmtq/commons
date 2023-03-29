@@ -11,6 +11,7 @@ import java.util.Map;
 public class RequestProperties {
 
     private Map<String, String> properties = new HashMap<>();
+    private String body;
 
     public RequestProperties withProperty(String property, String value) {
         getProperties().put(property, value);
@@ -19,6 +20,11 @@ public class RequestProperties {
 
     public RequestProperties withoutProperty(String property) {
         getProperties().remove(property);
+        return this;
+    }
+
+    public RequestProperties withBody(String body) {
+        setBody(body);
         return this;
     }
 
