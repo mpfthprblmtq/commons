@@ -10,6 +10,7 @@
 package com.mpfthprblmtq.commons.helpers;
 
 // imports
+import com.mpfthprblmtq.commons.utils.StringUtils;
 import lombok.Data;
 
 import java.io.BufferedReader;
@@ -57,7 +58,7 @@ public class InputHelper {
      */
     public String getInput(String query, String regexVerifier, String invalidInputString) throws IOException {
         boolean validInput = false;
-        String input = "";
+        String input = StringUtils.EMPTY;
 
         // loop while the input isn't valid
         while (!validInput) {
@@ -79,5 +80,39 @@ public class InputHelper {
             }
         }
         return input;
+    }
+
+    /**
+     * Gets user input from the command line, in a yes/no format
+     * @param query the query to ask the user, basis for the input
+     * @return a boolean based on the result (true for yes, false for no)
+     * @throws IOException if there's a problem with the input stream
+     */
+    public boolean getYesNoInput(String query) throws IOException {
+        boolean validInput = false;
+        String input = StringUtils.EMPTY;
+
+        // loop while the input isn't valid
+        while (!validInput) {
+            // ask the question
+            outputStream.println(query);
+            outputStream.print("\t: ");
+
+            // get the answer
+            input = inputStream.readLine();
+            if (input.toLowerCase(Locale.ROOT).equals("exit")) {
+                System.out.println();
+                System.exit(0);
+            }
+            if (input.matches("^[YyNn]$")) {
+                validInput = true;
+            } else {
+                outputStream.println("Invalid input, need either Y or N (Yes/No).");
+                outputStream.println();
+            }
+        }
+
+        // return if input is "Y" or "y"
+        return input.equals("Y") || input.equals("y");
     }
 }
