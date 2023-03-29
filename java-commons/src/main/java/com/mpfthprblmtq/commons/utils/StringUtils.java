@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Locale;
 
 // class StringUtils
+@SuppressWarnings("unused")
 public class StringUtils {
 
     // constants
@@ -52,6 +53,15 @@ public class StringUtils {
     }
 
     /**
+     * Utility function to set an object to either "" or the toString() value (really just prevents null values)
+     * @param o the object to check
+     * @return the string representation of the object
+     */
+    public static String validateString(Object o) {
+        return o == null ? EMPTY : o.toString();
+    }
+
+    /**
      * Formats a number with commas
      * @param number the number to format
      * @return a formatted number
@@ -84,7 +94,7 @@ public class StringUtils {
 
     /**
      * Formats a number for currency
-     * This overload takes a locale so we can use different locales
+     * This overload takes a locale, so we can use different locales
      * @param value the double to format
      * @param locale the locale to format with
      * @return the formatted currency amount

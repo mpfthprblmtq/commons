@@ -1,5 +1,6 @@
 package com.mpfthprblmtq.commons.utils;
 
+import com.mpfthprblmtq.commons.objects.RequestProperties;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -35,6 +36,11 @@ class StringUtilsTest {
         assertEquals(StringUtils.EMPTY, StringUtils.validateString(""));
         assertEquals(StringUtils.EMPTY, StringUtils.validateString(null));
         assertNotEquals(StringUtils.EMPTY, StringUtils.validateString("x"));
+    }
+
+    @Test
+    public void testValidateString_withObject() {
+        assertNotEquals(StringUtils.EMPTY, StringUtils.validateString(new RequestProperties()));
     }
 
     @Test
@@ -78,9 +84,11 @@ class StringUtilsTest {
         String expected2 = "$12.30";
         assertEquals(expected2, StringUtils.formatForCurrency(value2));
 
+        // have to do this weird thing for the " " vs. NBSP thing
         double value3 = 56.78;
-        String expected3 = "56,78 €";
-        assertEquals(expected3, StringUtils.formatForCurrency(value3, new Locale("de",  "DE")));
+        String expected3 = "56,78";
+        String actual = StringUtils.formatForCurrency(value3, Locale.forLanguageTag("de-DE"));
+        assertTrue(actual.startsWith(expected3) && actual.endsWith("€"));
     }
 
     @Test

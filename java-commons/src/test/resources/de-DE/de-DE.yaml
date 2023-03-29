@@ -1,0 +1,5 @@
+subDictionaryPaths:
+  - /resources/de-DE/feature1.yaml
+dictionaryValues:
+  HELLO_WORLD: Hallo Welt!
+  I_HAVE: Ich habe {} {}.

@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // class FileUtils
+@SuppressWarnings("unused")
 public class FileUtils {
 
     /**
@@ -88,7 +89,7 @@ public class FileUtils {
     /**
      * Deletes a folder and all of its contents recursively
      * @param folder the folder to delete
-     * @return a boolean result of the delete
+     * @return a boolean result of delete
      */
     public static boolean deleteFolder(File folder) {
         boolean result;
@@ -115,7 +116,7 @@ public class FileUtils {
      * @param file the file to open
      * @throws IOException if there are issues opening the file
      */
-    public static void openFile(File file) throws IOException, Exception {
+    public static void openFile(File file) throws Exception {
         if (Desktop.isDesktopSupported()) {
             Desktop desktop = Desktop.getDesktop();
             if (file.exists()) {

@@ -84,4 +84,22 @@ public class RegexUtils {
         }
         return matchingGroups;
     }
+
+    /**
+     * Counts the occurrences of a given regex
+     * @param s the string to check
+     * @param regex the regex to check for
+     * @return a count of the matches found in the string
+     */
+    public static int countOccurrencesOfMatch(String s, String regex) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(s);
+
+        // count how many times the regex appears in the string
+        int count = 0;
+        while(matcher.find()) {
+            count++;
+        }
+        return count;
+    }
 }

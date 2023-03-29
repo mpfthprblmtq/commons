@@ -1,0 +1,9 @@
+{
+  "subDictionaryPaths": [
+    "/resources/de-DE/feature1.json"
+  ],
+  "dictionaryValues": {
+    "HELLO_WORLD": "Hallo Welt!",
+    "I_HAVE": "Ich habe {} {}."
+  }
+}

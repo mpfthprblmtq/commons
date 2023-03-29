@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 // class CollectionUtils
+@SuppressWarnings("unused")
 public class CollectionUtils {
 
     public static final List<?> EMPTY_LIST = new ArrayList<>();

@@ -40,6 +40,14 @@ public class Logger {
     private File eventLog;
 
     /**
+     * Default constructor, sets the error and event logs to the main console
+     */
+    public Logger() {
+        setSystemOutToConsole();
+        setSystemErrToConsole();
+    }
+
+    /**
      * Constructor
      * @param appSupportPath the path of the support directory
      * @param developerMode a boolean to indicate if we're in development or deployed
@@ -143,6 +151,7 @@ public class Logger {
      * @param errorString the localized string
      * @param ex the exception that was thrown
      */
+    @SuppressWarnings("Duplicates")
     public void logError(String errorString, Exception ex) {
 
         // format today's date
@@ -162,6 +171,7 @@ public class Logger {
      * Method that actually does the logging for errors
      * @param errorString the localized string
      */
+    @SuppressWarnings("Duplicates")
     public void logError(String errorString) {
 
         // format today's date
