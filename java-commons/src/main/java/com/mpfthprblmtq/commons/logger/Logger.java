@@ -13,6 +13,7 @@ package com.mpfthprblmtq.commons.logger;
 import lombok.Data;
 import com.mpfthprblmtq.commons.utils.DateUtils;
 import com.mpfthprblmtq.commons.utils.StringUtils;
+import lombok.extern.java.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -45,6 +46,15 @@ public class Logger {
     public Logger() {
         setSystemOutToConsole();
         setSystemErrToConsole();
+        setDeveloperMode(false);
+    }
+
+    /**
+     * Simple constructor, sets developerMode to false by default and sets up the app support path
+     * @param appSupportPath the path of the support directory
+     */
+    public Logger(String appSupportPath) {
+        new Logger(appSupportPath, false);
     }
 
     /**

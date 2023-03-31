@@ -8,7 +8,6 @@ import com.mpfthprblmtq.commons.utils.CollectionUtils;
 import com.mpfthprblmtq.commons.utils.StringUtils;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -61,14 +60,14 @@ class TranslationInstanceTest {
     }
 
     @Test
-    public void testTranslationInstanceConstructor_whenGivenOneLocale_thenTranslates_JSON() throws Exception {
+    public void testTranslationInstanceConstructor_whenGivenOneLocale_thenTranslates_JSON() {
         TranslationInstance translationInstance = new TranslationInstance(
                 Collections.singletonList("/resources/de-DE/de-DE.json"));
         assertEquals("Hallo Welt!", translationInstance.t("HELLO_WORLD"));
     }
 
     @Test
-    public void testTranslationInstanceConstructor_whenGivenTwoLocales_andLocaleIsSet_thenTranslates_JSON() throws Exception {
+    public void testTranslationInstanceConstructor_whenGivenTwoLocales_andLocaleIsSet_thenTranslates_JSON() {
         TranslationInstance translationInstance = new TranslationInstance(
                 Arrays.asList("/resources/en-US/en-US.json", "/resources/de-DE/de-DE.json"));
         translationInstance.setCurrentLocale(Locale.forLanguageTag("de-DE"));
@@ -76,21 +75,21 @@ class TranslationInstanceTest {
     }
 
     @Test
-    public void testTranslationInstanceConstructor_whenGivenTwoLocales_andLocaleIsNotSet_thenDoesntTranslate_JSON() throws Exception {
+    public void testTranslationInstanceConstructor_whenGivenTwoLocales_andLocaleIsNotSet_thenDoesntTranslate_JSON() {
         TranslationInstance translationInstance = new TranslationInstance(
                 Arrays.asList("/resources/en-US/en-US.json", "/resources/de-DE/de-DE.json"));
         assertEquals("HELLO_WORLD", translationInstance.t("HELLO_WORLD"));
     }
 
     @Test
-    public void testTranslationInstanceConstructor_whenGivenOneLocale_thenTranslates() throws Exception {
+    public void testTranslationInstanceConstructor_whenGivenOneLocale_thenTranslates() {
         TranslationInstance translationInstance = new TranslationInstance(
                 Collections.singletonList("/resources/de-DE/de-DE.yaml"));
         assertEquals(translationInstance.t("HELLO_WORLD"), "Hallo Welt!");
     }
 
     @Test
-    public void testTranslationInstanceConstructor_whenGivenTwoLocales_andLocaleIsSet_thenTranslates() throws Exception {
+    public void testTranslationInstanceConstructor_whenGivenTwoLocales_andLocaleIsSet_thenTranslates() {
         TranslationInstance translationInstance = new TranslationInstance(
                 Arrays.asList("/resources/en-US/en-US.yaml", "/resources/de-DE/de-DE.yaml"));
         translationInstance.setCurrentLocale(Locale.forLanguageTag("de-DE"));
@@ -98,14 +97,14 @@ class TranslationInstanceTest {
     }
 
     @Test
-    public void testTranslationInstanceConstructor_whenGivenTwoLocales_andLocaleIsNotSet_thenDoesntTranslate() throws Exception {
+    public void testTranslationInstanceConstructor_whenGivenTwoLocales_andLocaleIsNotSet_thenDoesntTranslate() {
         TranslationInstance translationInstance = new TranslationInstance(
                 Arrays.asList("/resources/en-US/en-US.yaml", "/resources/de-DE/de-DE.yaml"));
         assertEquals("HELLO_WORLD", translationInstance.t("HELLO_WORLD"));
     }
 
     @Test
-    public void testTranslationInstanceConstructor_whenGivenTwoLocales_andLocaleIsSet_andThenChanged_thenTranslatesWithNewLocale() throws Exception {
+    public void testTranslationInstanceConstructor_whenGivenTwoLocales_andLocaleIsSet_andThenChanged_thenTranslatesWithNewLocale() {
         TranslationInstance translationInstance = new TranslationInstance(
                 Arrays.asList("/resources/en-US/en-US.yaml", "/resources/de-DE/de-DE.yaml"));
         translationInstance.setCurrentLocale(Locale.forLanguageTag("en-US"));
@@ -115,7 +114,7 @@ class TranslationInstanceTest {
     }
 
     @Test
-    public void testTranslate_whenGivenTranslationWithSubstitutions_thenTranslatesWithTextReplacement() throws Exception {
+    public void testTranslate_whenGivenTranslationWithSubstitutions_thenTranslatesWithTextReplacement() {
         TranslationInstance translationInstance = new TranslationInstance(
                 Collections.singletonList("/resources/de-DE/de-DE.yaml"));
         String result = translationInstance.t("I_HAVE", 3, "Bananen");
@@ -123,7 +122,7 @@ class TranslationInstanceTest {
     }
 
     @Test
-    public void testTranslate_whenGivenTranslationWithSubstitutions_andNotEnoughSubstitutionsGiven_thenThrowsException() throws Exception {
+    public void testTranslate_whenGivenTranslationWithSubstitutions_andNotEnoughSubstitutionsGiven_thenThrowsException() {
         TranslationInstance translationInstance = new TranslationInstance(
                 Collections.singletonList("/resources/de-DE/de-DE.yaml"));
         NotEnoughSubstitutionValuesException expectedThrown = assertThrows(
@@ -136,7 +135,7 @@ class TranslationInstanceTest {
     }
 
     @Test
-    public void testTranslate_whenGivenTranslationWithSubstitutions_andTooManySubstitutionsGiven_thenThrowsException() throws Exception {
+    public void testTranslate_whenGivenTranslationWithSubstitutions_andTooManySubstitutionsGiven_thenThrowsException() {
         TranslationInstance translationInstance = new TranslationInstance(
                 Collections.singletonList("/resources/de-DE/de-DE.yaml"));
         TooManySubstitutionValuesException expectedThrown = assertThrows(
@@ -156,7 +155,7 @@ class TranslationInstanceTest {
     }
 
     @Test
-    public void testGetSupportedLocales_whenTwoLocalesConfigured_thenReturnsListOfBothLocales() throws Exception {
+    public void testGetSupportedLocales_whenTwoLocalesConfigured_thenReturnsListOfBothLocales() {
         TranslationInstance translationInstance = new TranslationInstance(
                 Arrays.asList("/resources/en-US/en-US.yaml", "/resources/de-DE/de-DE.yaml"));
         List<Locale> expectedLocales = CollectionUtils.createList(Locale.forLanguageTag("en-US"), Locale.forLanguageTag("de-DE"));

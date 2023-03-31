@@ -11,6 +11,7 @@ package com.mpfthprblmtq.commons.utils;
 
 // imports
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -62,22 +63,58 @@ public class StringUtils {
     }
 
     /**
-     * Formats a number with commas
+     * Custom equals method to prevent NullPointerExceptions with String.equals()
+     * @param string1 first string to check
+     * @param string2 second string to check
+     * @return the result of the check
+     */
+    @SuppressWarnings("all")
+    public static boolean equals(String string1, String string2) {
+        return string1 == null ? string2 == null : string1.equals(string2);
+    }
+
+    /**
+     * Custom equalsIgnoreCase method to prevent NullPointerExceptions with String.equalsIgnoreCase()
+     * @param string1 first string to check
+     * @param string2 second string to check
+     * @return the result of the check
+     */
+    public static boolean equalsIgnoreCase(String string1, String string2) {
+        return string1 == null ? string2 == null : string1.equalsIgnoreCase(string2);
+    }
+
+    /**
+     * Formats a number with default Locale
      * @param number the number to format
+     * @param <T> the class of the number passed in, should be int, double, long, etc.
      * @return a formatted number
      */
-    public static String formatNumber(int number) {
-        DecimalFormat df = new DecimalFormat("###,###,###");
+    public static <T> String formatNumber(T number) {
+        DecimalFormat df = new DecimalFormat("###,###,###.#######");
         return df.format(number);
+    }
+
+    /**
+     * Formats a number based on Locale given
+     * @param number the number to format
+     * @param locale the locale to format with
+     * @param <T> the class of the number passed in, should be int, double, long, etc.
+     * @return a formatted number
+     */
+    public static <T> String formatNumber(T number, Locale locale) {
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
+        DecimalFormat format = new DecimalFormat("###,###,###.########", symbols);
+        return format.format(number);
     }
 
     /**
      * Pads zeros to the left of the number
      * @param value the number to pad
      * @param paddingLength the TOTAL length that the new string should be
+     * @param <T> the class of the number passed in, should be int, double, long, etc.
      * @return the padded number
      */
-    public static String padZeros(int value, int paddingLength) {
+    public static <T> String padZeros(T value, int paddingLength) {
         return String.format("%0" + paddingLength + "d", value);
     }
 
@@ -85,9 +122,10 @@ public class StringUtils {
      * Formats a number for currency
      * This overload doesn't take a locale, so use USD by default
      * @param value the double to format
+     * @param <T> the class of the number passed in, should be int, double, long, etc.
      * @return the formatted currency amount
      */
-    public static String formatForCurrency(double value) {
+    public static <T> String formatForCurrency(T value) {
         NumberFormat defaultFormat = NumberFormat.getCurrencyInstance();
         return defaultFormat.format(value);
     }
@@ -97,9 +135,10 @@ public class StringUtils {
      * This overload takes a locale, so we can use different locales
      * @param value the double to format
      * @param locale the locale to format with
+     * @param <T> the class of the number passed in, should be int, double, long, etc.
      * @return the formatted currency amount
      */
-    public static String formatForCurrency(double value, Locale locale) {
+    public static <T> String formatForCurrency(T value, Locale locale) {
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
         return numberFormat.format(value);
     }
@@ -148,27 +187,6 @@ public class StringUtils {
             }
         }
         return true;
-    }
-
-    /**
-     * Custom equals method to prevent NullPointerExceptions with String.equals()
-     * @param string1 first string to check
-     * @param string2 second string to check
-     * @return the result of the check
-     */
-    @SuppressWarnings("all")
-    public static boolean equals(String string1, String string2) {
-        return string1 == null ? string2 == null : string1.equals(string2);
-    }
-
-    /**
-     * Custom equalsIgnoreCase method to prevent NullPointerExceptions with String.equalsIgnoreCase()
-     * @param string1 first string to check
-     * @param string2 second string to check
-     * @return the result of the check
-     */
-    public static boolean equalsIgnoreCase(String string1, String string2) {
-        return string1 == null ? string2 == null : string1.equalsIgnoreCase(string2);
     }
 
     /**
