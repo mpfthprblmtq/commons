@@ -24,9 +24,15 @@ const HomeComponent: FunctionComponent = () => {
                 </StyledLink>
                 <StyledLink
                     className="App-link"
-                    href={RouterPaths.DogCeo}
+                    href={RouterPaths.Dog}
                     rel="noopener noreferrer">
-                    Dog CEO
+                    Dogs
+                </StyledLink>
+                <StyledLink
+                    className="App-link"
+                    href={RouterPaths.Cat}
+                    rel="noopener noreferrer">
+                    Cats
                 </StyledLink>
                 <StyledButton variant="contained" onClick={() => alertFunction("Hooray!")}>Test Button</StyledButton>
             </header>

@@ -1,5 +1,6 @@
 export enum RouterPaths {
     Empty = '/',
-    Test = '/Test',
-    DogCeo = '/DogCEO'
+    Test = '/test',
+    Dog = '/dog',
+    Cat = '/cat'
 }
