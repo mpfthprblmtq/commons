@@ -14,7 +14,7 @@ const HomeComponent: FunctionComponent = () => {
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                 <StyledText color="gray">
-                    Edit <code>src/app/App.tsx</code> and save to reload.
+                    Edit any component and save to reload!
                 </StyledText>
                 <StyledLink
                     className="App-link"
@@ -32,6 +32,6 @@ const HomeComponent: FunctionComponent = () => {
             </header>
         </div>
     );
-}
+};
 
 export default HomeComponent;

@@ -7,7 +7,7 @@ const TestComponent: FunctionComponent = () => {
             <p>Hello from the Test Component!</p>
             <a href={RouterPaths.Empty} >Back to Home</a>
         </div>
-    )
-}
+    );
+};
 
 export default TestComponent;

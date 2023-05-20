@@ -7,7 +7,7 @@ const DogCeo: FunctionComponent = () => {
             <p>Hello from the Dog CEO Component!</p>
             <a href={RouterPaths.Empty} >Back to Home</a>
         </div>
-    )
-}
+    );
+};
 
 export default DogCeo;
