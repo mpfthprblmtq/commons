@@ -13,3 +13,7 @@ export const StyledButton = styled(Button)`
   //color: tomato !important;
   background-color: cadetblue !important;
 `;
+
+export const CenteredDiv = styled.div`
+  text-align: center;
+`;
