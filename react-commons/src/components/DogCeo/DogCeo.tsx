@@ -1,7 +1,7 @@
 import {FunctionComponent, useEffect, useState} from "react";
 import {RouterPaths} from "../../utils/RouterPaths";
 import {StyledImg} from "./DogCeo.styled";
-import {useDogAxiosInstance} from "../../hooks/useDogService";
+import {useDogAxiosInstance} from "../../services/useDogService";
 import {CenteredDiv} from "../../app/App.styles";
 
 const DogCeo: FunctionComponent = () => {
@@ -10,7 +10,7 @@ const DogCeo: FunctionComponent = () => {
 
     useEffect(() => {
         getRandomDogImage().then((response) => setImageUrl(response));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-services/exhaustive-deps
     }, []);
 
     return (
